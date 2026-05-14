@@ -37,6 +37,8 @@ const statusTone = (status: PaymentStatus) => {
   return 'danger';
 };
 
+const getParticipantName = (fullName?: string | null) => fullName?.trim() || 'Cau thu da roi doi';
+
 export const PaymentsPage = () => {
   const [payments, setPayments] = useState<Payment[]>([]);
   const [matches, setMatches] = useState<Match[]>([]);
@@ -99,11 +101,13 @@ export const PaymentsPage = () => {
       totalDue: payment.totalDue,
       currency: payment.currency,
       notes: payment.notes || '',
-      participants: payment.participants.map((participant) => ({
-        playerId: participant.player._id,
-        hasPaid: participant.hasPaid,
-        amount: participant.amount,
-      })),
+      participants: payment.participants
+        .filter((participant) => Boolean(participant.player))
+        .map((participant) => ({
+          playerId: participant.player!._id,
+          hasPaid: participant.hasPaid,
+          amount: participant.amount,
+        })),
     });
     setModalOpen(true);
   };
@@ -137,7 +141,7 @@ export const PaymentsPage = () => {
 
   const updateParticipant = async (payment: Payment, playerId: string, hasPaid: boolean) => {
     const participants = payment.participants.map((participant) =>
-      participant.player._id === playerId
+      participant.player?._id === playerId
         ? { ...participant, hasPaid, paidAt: hasPaid ? new Date().toISOString() : null }
         : participant,
     );
@@ -149,11 +153,13 @@ export const PaymentsPage = () => {
         totalDue: payment.totalDue,
         currency: payment.currency,
         notes: payment.notes || '',
-        participants: participants.map((participant) => ({
-          player: participant.player._id,
-          hasPaid: participant.hasPaid,
-          amount: participant.amount,
-        })),
+        participants: participants
+          .filter((participant) => Boolean(participant.player))
+          .map((participant) => ({
+            player: participant.player!._id,
+            hasPaid: participant.hasPaid,
+            amount: participant.amount,
+          })),
       });
       setPayments((current) =>
         current.map((item) =>
@@ -299,13 +305,17 @@ export const PaymentsPage = () => {
                     <p className="text-sm text-slate-400">{payment.participants.filter((participant) => participant.hasPaid).length}/{payment.participants.length} đã đóng</p>
                   </div>
                   <div className="grid gap-2 md:grid-cols-2">
-                    {payment.participants.map((participant) => (
-                      <label key={participant.player._id} className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/5 px-3 py-2 text-sm text-slate-200">
-                        <span>{participant.player.fullName}</span>
+                    {payment.participants.map((participant, index) => (
+                      <label
+                        key={`${payment._id}-${participant.player?._id || 'unknown'}-${index}`}
+                        className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/5 px-3 py-2 text-sm text-slate-200"
+                      >
+                        <span>{getParticipantName(participant.player?.fullName)}</span>
                         <input
                           type="checkbox"
                           checked={participant.hasPaid}
-                          onChange={(event) => updateParticipant(payment, participant.player._id, event.target.checked)}
+                          disabled={!participant.player}
+                          onChange={(event) => participant.player && updateParticipant(payment, participant.player._id, event.target.checked)}
                         />
                       </label>
                     ))}
@@ -407,3 +417,5 @@ export const PaymentsPage = () => {
     </div>
   );
 };
+
+
