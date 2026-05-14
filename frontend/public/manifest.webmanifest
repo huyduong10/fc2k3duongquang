@@ -1,0 +1,9 @@
+{
+  "name": "2k3 DươngQuang",
+  "short_name": "2k3DQ",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#020617",
+  "theme_color": "#020617",
+  "description": "Nền tảng quản lý và theo dõi bóng đá 2k3 DươngQuang"
+}
