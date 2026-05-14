@@ -25,6 +25,7 @@ const normalizePayment = (payload: Record<string, unknown>) => {
 
   return {
     ...payload,
+    match: payload.match || payload.matchId,
     participants,
     totalDue,
     totalCollected,
@@ -35,7 +36,7 @@ const normalizePayment = (payload: Record<string, unknown>) => {
 
 export const getPayments = asyncHandler(async (_req: Request, res: Response) => {
   const items = await populatePayment();
-  res.json({ items });
+  res.json({ items: items.filter((payment) => Boolean(payment.match)) });
 });
 
 export const getPublicPayments = asyncHandler(async (_req: Request, res: Response) => {

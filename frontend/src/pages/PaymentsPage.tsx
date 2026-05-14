@@ -48,6 +48,9 @@ export const PaymentsPage = () => {
   const [editingPayment, setEditingPayment] = useState<Payment | null>(null);
   const [form, setForm] = useState<PaymentFormState>(emptyForm());
 
+  const hasPaymentMatch = (payment: Payment): payment is Payment & { match: Match } => Boolean(payment.match);
+  const isValidMatch = (match: Match | null | undefined): match is Match => Boolean(match?._id && match?.matchName);
+
   const loadData = async () => {
     setLoading(true);
     try {
@@ -56,8 +59,8 @@ export const PaymentsPage = () => {
         api.get('/matches'),
         api.get('/players', { params: { limit: 100 } }),
       ]);
-      setPayments(paymentResponse.data.items || []);
-      setMatches(matchResponse.data.items || []);
+      setPayments((paymentResponse.data.items || []).filter(hasPaymentMatch));
+      setMatches((matchResponse.data.items || []).filter(isValidMatch));
       setPlayers(playerResponse.data.items || []);
     } finally {
       setLoading(false);
@@ -95,6 +98,11 @@ export const PaymentsPage = () => {
   };
 
   const openEdit = (payment: Payment) => {
+    if (!payment.match) {
+      toast.error('Thanh toan nay khong con tran dau hop le');
+      return;
+    }
+
     setEditingPayment(payment);
     setForm({
       matchId: payment.match._id,
@@ -115,8 +123,10 @@ export const PaymentsPage = () => {
   const savePayment = async () => {
     try {
       const payload = {
-        ...form,
+        match: form.matchId,
         totalDue: Number(form.totalDue),
+        currency: form.currency,
+        notes: form.notes,
         participants: form.participants.map((participant) => ({
           player: participant.playerId,
           hasPaid: participant.hasPaid,
@@ -180,6 +190,11 @@ export const PaymentsPage = () => {
   };
 
   const deletePayment = async (payment: Payment) => {
+    if (!payment.match) {
+      toast.error('Thanh toan nay khong con tran dau hop le');
+      return;
+    }
+
     if (!window.confirm(`Xóa thanh toán của trận ${payment.match.matchName}?`)) {
       return;
     }
@@ -195,7 +210,7 @@ export const PaymentsPage = () => {
 
   const exportExcel = () => {
     const workbook = XLSX.utils.book_new();
-    const rows = payments.map((payment) => ({
+    const rows = payments.filter(hasPaymentMatch).map((payment) => ({
       Tran: payment.match.matchName,
       DoiThu: payment.match.opponent,
       TongCanDong: payment.totalDue,
@@ -213,7 +228,7 @@ export const PaymentsPage = () => {
     doc.text('Báo cáo đóng tiền sau trận', 14, 16);
     autoTable(doc, {
       head: [['Trận', 'Đối thủ', 'Cần đóng', 'Đã thu', 'Trạng thái']],
-      body: payments.map((payment) => [
+      body: payments.filter(hasPaymentMatch).map((payment) => [
         payment.match.matchName,
         payment.match.opponent,
         formatCurrency(payment.totalDue),
@@ -239,6 +254,8 @@ export const PaymentsPage = () => {
   );
 
   const selectedMatch = matches.find((match) => match._id === form.matchId);
+  const visiblePayments = payments.filter(hasPaymentMatch);
+  const availableMatches = matches.filter(isValidMatch);
 
   return (
     <div className="space-y-6">
@@ -278,7 +295,7 @@ export const PaymentsPage = () => {
             ))}
           </div>
         ) : (
-          payments.map((payment) => (
+          visiblePayments.map((payment) => (
             <div key={payment._id} className="glass-panel rounded-[2rem] p-5 shadow-glow">
               <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
                 <div>
@@ -355,7 +372,7 @@ export const PaymentsPage = () => {
             }}
           >
             <option value="">Chọn trận đấu</option>
-            {matches.map((match) => (
+            {availableMatches.map((match) => (
               <option key={match._id} value={match._id}>{match.matchName}</option>
             ))}
           </Select>
