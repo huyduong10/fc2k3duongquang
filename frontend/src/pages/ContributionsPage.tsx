@@ -44,7 +44,7 @@ export const ContributionsPage = () => {
         <p className="text-sm uppercase tracking-[0.35em] text-pitch-300/70">Đóng góp sau trận</p>
         <h2 className="mt-2 text-4xl font-semibold text-white">Ai đã đóng và ai chưa đóng</h2>
         <p className="mt-3 max-w-3xl text-slate-300">
-          Theo dõi chi tiết tiền đóng theo từng trận: trận nào, ngày nào, số tiền đã thu và danh sách cầu thủ chưa đóng được cập nhật từ admin.
+            mấy chục bạc cứ phải để nhắc
         </p>
       </div>
 

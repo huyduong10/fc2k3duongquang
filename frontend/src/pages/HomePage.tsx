@@ -60,10 +60,10 @@ export const HomePage = () => {
           <div>
             <Badge tone="success">Không gian đội bóng trực tuyến</Badge>
             <h2 className="mt-5 max-w-3xl text-4xl font-semibold leading-tight text-white lg:text-6xl">
-              Cổng thông tin 2k3 DươngQuang dành cho mọi thành viên, không chỉ quản trị.
+              Phương anh có ăn được thịt gà không em?
             </h2>
             <p className="mt-5 max-w-2xl text-base leading-7 text-slate-300 lg:text-lg">
-              Theo dõi phong độ đội hình, kết quả thi đấu và hành trình mùa giải qua giao diện thể thao hiện đại.
+             làm tí tài xỉu
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link to="/fixtures">

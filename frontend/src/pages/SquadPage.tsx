@@ -34,7 +34,7 @@ export const SquadPage = () => {
         <div>
           <p className="text-sm uppercase tracking-[0.35em] text-pitch-300/70">Đội hình công khai</p>
           <h2 className="mt-2 text-4xl font-semibold text-white">Danh sách cầu thủ</h2>
-          <p className="mt-3 max-w-2xl text-slate-300">Bảng cầu thủ trực quan cho người hâm mộ, thành viên và khách xem trận.</p>
+          <p className="mt-3 max-w-2xl text-slate-300">Danh sách cầu thủ muốn sa thải</p>
         </div>
         <div className="grid gap-3 sm:grid-cols-2">
           <Input placeholder="Tìm cầu thủ" value={search} onChange={(event) => setSearch(event.target.value)} />
