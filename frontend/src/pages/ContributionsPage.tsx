@@ -6,6 +6,14 @@ import { Skeleton } from '../components/ui/Skeleton';
 import { formatCurrency, formatDate } from '../lib/format';
 import type { PublicPayment } from '../types';
 
+const getEffectiveTotalDue = (payment: PublicPayment) => {
+  if (payment.totalDue > 0) {
+    return payment.totalDue;
+  }
+
+  return payment.participants.reduce((sum, participant) => sum + Number(participant.amount || 0), 0);
+};
+
 export const ContributionsPage = () => {
   const [payments, setPayments] = useState<PublicPayment[]>([]);
   const [loading, setLoading] = useState(true);
@@ -28,7 +36,7 @@ export const ContributionsPage = () => {
     () =>
       payments.reduce(
         (accumulator, payment) => {
-          accumulator.totalDue += payment.totalDue;
+          accumulator.totalDue += getEffectiveTotalDue(payment);
           accumulator.totalCollected += payment.totalCollected;
           accumulator.totalUnpaid += payment.unpaidCount;
           return accumulator;
@@ -156,7 +164,7 @@ export const ContributionsPage = () => {
 
                 <div className="mt-4 flex flex-wrap items-center justify-between gap-2 text-sm text-slate-400">
                   <p>
-                    Đã thu {formatCurrency(payment.totalCollected, payment.currency)} / {formatCurrency(payment.totalDue, payment.currency)}
+                    Đã thu {formatCurrency(payment.totalCollected, payment.currency)} / {formatCurrency(getEffectiveTotalDue(payment), payment.currency)}
                   </p>
                   <p>Cập nhật: {formatDate(payment.updatedAt)}</p>
                 </div>
