@@ -176,13 +176,13 @@ Ly do: Vercel/Netlify rat hop frontend, con backend Express realtime se on dinh 
 2. Tren Netlify:
 	- Add new site from Git
 	- Chon repo
-	- Base directory: `frontend`
-	- Build command: `npm run build`
-	- Publish directory: `frontend/dist`
+	- Repo da co san `netlify.toml`, chi can Import va Deploy
+	- Neu can set tay: Base directory `frontend`, Build command `npm run build`, Publish directory `dist`
 3. Dat env frontend tren Netlify:
 	- `VITE_API_URL=https://your-api.onrender.com/api`
 	- `VITE_SOCKET_URL=https://your-api.onrender.com`
 4. Deploy lai site.
+5. Da co san SPA redirect trong repo (`netlify.toml` + `frontend/public/_redirects`) nen route `/login`, `/book-sunday`, `/admin/*` se khong bi 404.
 
 ### Option 3: GitHub auto deploy don gian
 

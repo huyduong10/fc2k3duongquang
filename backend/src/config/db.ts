@@ -5,5 +5,9 @@ export const connectDatabase = async (mongoUri: string) => {
     throw new Error('MONGODB_URI is required');
   }
 
-  await mongoose.connect(mongoUri);
+  const timeout = Number(process.env.MONGODB_CONNECT_TIMEOUT_MS || 15000);
+
+  await mongoose.connect(mongoUri, {
+    serverSelectionTimeoutMS: timeout,
+  });
 };
