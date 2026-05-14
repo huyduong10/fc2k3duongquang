@@ -42,9 +42,9 @@ export const ContributionsPage = () => {
     <div className="mx-auto max-w-7xl px-4 py-12 lg:px-8">
       <div>
         <p className="text-sm uppercase tracking-[0.35em] text-pitch-300/70">Đóng góp sau trận</p>
-        <h2 className="mt-2 text-4xl font-semibold text-white">Ai đã đóng và ai chưa đóng</h2>
+        <h2 className="mt-2 text-4xl font-semibold text-white">Danh sách đóng tiền</h2>
         <p className="mt-3 max-w-3xl text-slate-300">
-            mấy chục bạc cứ phải để nhắc
+            ae đóng tiền đi
         </p>
       </div>
 

@@ -39,7 +39,7 @@ export const FixturesPage = () => {
         <div>
           <p className="text-sm uppercase tracking-[0.35em] text-pitch-300/70">Lịch thi đấu & kết quả</p>
           <h2 className="mt-2 text-4xl font-semibold text-white">Theo dõi từng trận đấu</h2>
-          <p className="mt-3 max-w-xl text-slate-300">Timeline công khai rõ ràng về địa điểm, đối thủ, tỉ số và kết quả.</p>
+          <p className="mt-3 max-w-xl text-slate-300"> địa điểm, đối thủ, tỉ số và kết quả.</p>
 
           <div className="mt-8 grid gap-4 sm:grid-cols-3">
             {loading

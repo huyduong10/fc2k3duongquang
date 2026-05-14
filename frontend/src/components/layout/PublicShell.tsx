@@ -83,7 +83,7 @@ export const PublicShell = ({ children }: { children: React.ReactNode }) => {
             <Trophy size={16} className="text-pitch-300" />
             2k3 DươngQuang
           </div>
-          <p>Giao diện công khai cho người hâm mộ, cầu thủ và thành viên đội.</p>
+          <p>memories bring back you</p>
         </div>
       </footer>
     </div>

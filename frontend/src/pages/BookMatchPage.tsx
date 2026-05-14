@@ -103,9 +103,9 @@ export const BookMatchPage = () => {
     <div className="mx-auto max-w-5xl px-4 py-12 lg:px-8">
       <div>
         <p className="text-sm uppercase tracking-[0.35em] text-pitch-300/70">Book giao hữu Chủ nhật</p>
-        <h2 className="mt-2 text-4xl font-semibold text-white">Đặt lịch đá với 2k3 DươngQuang</h2>
+        <h2 className="mt-2 text-4xl font-semibold text-white">Đặt lịch đá </h2>
         <p className="mt-3 max-w-3xl text-slate-300">
-          Đội anh gửi thông tin liên hệ để đặt lịch đá vào Chủ nhật tuần này lúc 18:00. thằng ad sẽ check sau ít phút
+          a đặt lịch nhé thằng admin lát nó check
         </p>
       </div>
 
@@ -170,7 +170,7 @@ export const BookMatchPage = () => {
         </section>
 
         <section className="glass-panel rounded-[2rem] p-6 shadow-glow">
-          <h3 className="text-xl font-semibold text-white">Gửi yêu cầu book</h3>
+          <h3 className="text-xl font-semibold text-white">Gửi yêu cầu</h3>
           <p className="mt-2 text-sm text-slate-400">
            anh điền sdt để e liên hệ nhé
           </p>

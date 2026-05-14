@@ -60,10 +60,10 @@ export const HomePage = () => {
           <div>
             <Badge tone="success">Không gian đội bóng trực tuyến</Badge>
             <h2 className="mt-5 max-w-3xl text-4xl font-semibold leading-tight text-white lg:text-6xl">
-              Phương anh có ăn được thịt gà không em?
+              Bóng đá là không ngừng bỏ cuộc
             </h2>
             <p className="mt-5 max-w-2xl text-base leading-7 text-slate-300 lg:text-lg">
-             làm tí tài xỉu
+             "Tiến linh"
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link to="/fixtures">
