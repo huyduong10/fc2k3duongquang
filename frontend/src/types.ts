@@ -1,6 +1,7 @@
 export type PlayerPosition = 'GK' | 'DF' | 'MF' | 'FW';
 export type MatchResult = 'win' | 'draw' | 'loss';
 export type PaymentStatus = 'paid' | 'partial' | 'pending';
+export type BookingStatus = 'pending' | 'confirmed' | 'rejected';
 
 export interface Player {
   _id: string;
@@ -87,4 +88,18 @@ export interface AuthAdmin {
   name: string;
   email: string;
   role: 'admin';
+}
+
+export interface Booking {
+  _id: string;
+  teamName: string;
+  sundayDate: string;
+  contactPhone?: string;
+  contactFacebook?: string;
+  note?: string;
+  status: BookingStatus;
+  adminNote?: string;
+  confirmedAt?: string | null;
+  createdAt: string;
+  updatedAt: string;
 }

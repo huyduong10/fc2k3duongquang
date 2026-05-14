@@ -12,6 +12,8 @@ import { HomePage } from './pages/HomePage';
 import { SquadPage } from './pages/SquadPage';
 import { FixturesPage } from './pages/FixturesPage';
 import { ContributionsPage } from './pages/ContributionsPage';
+import { BookMatchPage } from './pages/BookMatchPage';
+import { BookingsPage } from './pages/BookingsPage';
 
 const ProtectedRoute = ({ children }: { children: ReactElement }) => {
   const { isAuthenticated, loading } = useAuth();
@@ -62,6 +64,14 @@ export default function App() {
           </PublicShell>
         }
       />
+      <Route
+        path="/book-sunday"
+        element={
+          <PublicShell>
+            <BookMatchPage />
+          </PublicShell>
+        }
+      />
       <Route path="/login" element={<LoginPage />} />
       <Route
         path="/admin/*"
@@ -73,6 +83,7 @@ export default function App() {
                 <Route path="players" element={<PlayersPage />} />
                 <Route path="matches" element={<MatchesPage />} />
                 <Route path="payments" element={<PaymentsPage />} />
+                <Route path="bookings" element={<BookingsPage />} />
                 <Route path="*" element={<Navigate to="/admin" replace />} />
               </Routes>
             </AppShell>

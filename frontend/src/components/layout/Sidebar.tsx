@@ -1,4 +1,4 @@
-import { Activity, Coins, Home, Shield, Users } from 'lucide-react';
+import { Activity, CalendarCheck, Coins, Home, Shield, Users } from 'lucide-react';
 import { NavLink } from 'react-router-dom';
 
 const navItems = [
@@ -6,6 +6,7 @@ const navItems = [
   { to: '/admin/players', label: 'Cầu thủ', icon: Users },
   { to: '/admin/matches', label: 'Trận đấu', icon: Activity },
   { to: '/admin/payments', label: 'Thanh toán', icon: Coins },
+  { to: '/admin/bookings', label: 'Book đối thủ', icon: CalendarCheck },
 ];
 
 export const Sidebar = ({ open, onClose }: { open: boolean; onClose: () => void }) => {

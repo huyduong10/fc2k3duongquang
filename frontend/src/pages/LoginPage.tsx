@@ -9,8 +9,8 @@ import { Input } from '../components/ui/Input';
 export const LoginPage = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
-  const [email, setEmail] = useState('admin@football.local');
-  const [password, setPassword] = useState('Admin123!');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (event: React.FormEvent) => {
@@ -74,14 +74,28 @@ export const LoginPage = () => {
           <h3 className="text-2xl font-semibold text-white">Login with role admin </h3>
           <p className="mt-2 text-sm text-slate-400">just huy duonng</p>
 
-          <form onSubmit={handleSubmit} className="mt-8 space-y-4">
+          <form onSubmit={handleSubmit} className="mt-8 space-y-4" autoComplete="on">
             <div>
               <label className="mb-2 block text-sm text-slate-300">Email</label>
-              <Input value={email} onChange={(event) => setEmail(event.target.value)} type="email" placeholder="admin@example.com" />
+              <Input
+                name="email"
+                autoComplete="username"
+                value={email}
+                onChange={(event) => setEmail(event.target.value)}
+                type="email"
+                placeholder="admin@example.com"
+              />
             </div>
             <div>
               <label className="mb-2 block text-sm text-slate-300">Mật khẩu</label>
-              <Input value={password} onChange={(event) => setPassword(event.target.value)} type="password" placeholder="••••••••" />
+              <Input
+                name="password"
+                autoComplete="current-password"
+                value={password}
+                onChange={(event) => setPassword(event.target.value)}
+                type="password"
+                placeholder="••••••••"
+              />
             </div>
             <Button type="submit" className="w-full py-3.5" disabled={loading}>
               {loading ? 'Đang đăng nhập...' : 'Login'}

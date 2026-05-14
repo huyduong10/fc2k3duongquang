@@ -7,6 +7,7 @@ const navItems = [
   { to: '/squad', label: 'Đội hình' },
   { to: '/fixtures', label: 'Lịch đấu' },
   { to: '/contributions', label: 'Tiền đóng' },
+  { to: '/book-sunday', label: 'Book Chủ nhật' },
   { to: '/login', label: 'Quản trị' },
 ];
 

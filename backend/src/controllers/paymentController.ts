@@ -44,7 +44,9 @@ export const getPublicPayments = asyncHandler(async (_req: Request, res: Respons
     .populate('participants.player', 'fullName jerseyNumber position avatarUrl')
     .sort({ createdAt: -1 });
 
-  const publicItems = items.map((payment) => {
+  const publicItems = items
+    .filter((payment) => Boolean(payment.match))
+    .map((payment) => {
     const paidCount = payment.participants.filter((participant) => participant.hasPaid).length;
     const unpaidCount = payment.participants.length - paidCount;
 
@@ -62,7 +64,7 @@ export const getPublicPayments = asyncHandler(async (_req: Request, res: Respons
       settlementDate: payment.settlementDate,
       updatedAt: payment.updatedAt,
     };
-  });
+    });
 
   res.json({ items: publicItems });
 });

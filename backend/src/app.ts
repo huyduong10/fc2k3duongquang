@@ -2,6 +2,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import express from 'express';
 import authRoutes from './routes/authRoutes.js';
+import bookingRoutes from './routes/bookingRoutes.js';
 import dashboardRoutes from './routes/dashboardRoutes.js';
 import matchRoutes from './routes/matchRoutes.js';
 import paymentRoutes from './routes/paymentRoutes.js';
@@ -35,6 +36,7 @@ app.get('/api/health', (_req, res) => {
 });
 
 app.use('/api/auth', authRoutes);
+app.use('/api/bookings', bookingRoutes);
 app.use('/api/players', playerRoutes);
 app.use('/api/matches', matchRoutes);
 app.use('/api/payments', paymentRoutes);

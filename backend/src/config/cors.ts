@@ -19,5 +19,15 @@ export const isAllowedOrigin = (origin?: string) => {
     return true;
   }
 
+  try {
+    const { hostname } = new URL(origin);
+
+    if (hostname === 'localhost' || hostname === '127.0.0.1') {
+      return true;
+    }
+  } catch {
+    // Ignore invalid origin values and fall back to explicit allow-list check.
+  }
+
   return getAllowedOrigins().includes(origin);
 };
