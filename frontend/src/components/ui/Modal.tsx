@@ -17,7 +17,7 @@ export const Modal = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/75 px-4 py-8 backdrop-blur-sm">
-      <div className="glass-panel relative w-full max-w-3xl rounded-[2rem] p-5 shadow-2xl">
+      <div className="glass-panel relative flex max-h-[calc(100vh-4rem)] w-full max-w-3xl flex-col overflow-y-auto rounded-[2rem] p-5 shadow-2xl">
         <button
           type="button"
           onClick={onClose}

@@ -385,12 +385,12 @@ export const PaymentsPage = () => {
           <Input placeholder="Ghi chú" value={form.notes} onChange={(event) => setForm({ ...form, notes: event.target.value })} />
         </div>
 
-        <div className="mt-5 rounded-3xl border border-white/10 bg-white/5 p-4">
+        <div className="mt-5 flex max-h-[50vh] flex-col rounded-3xl border border-white/10 bg-white/5 p-4">
           <div className="mb-3 flex items-center justify-between">
             <p className="text-sm text-slate-300">Cầu thủ tham gia</p>
             <p className="text-sm text-slate-400">{selectedMatch?.players.length || 0} cầu thủ</p>
           </div>
-          <div className="grid gap-3 md:grid-cols-2">
+          <div className="grid gap-3 overflow-y-auto pr-1 md:grid-cols-2">
             {(selectedMatch?.players || []).map((player, index) => {
               const row = form.participants[index] || { playerId: player._id, hasPaid: false, amount: 0 };
               return (
@@ -426,7 +426,7 @@ export const PaymentsPage = () => {
           </div>
         </div>
 
-        <div className="mt-5 flex justify-end gap-3">
+        <div className="sticky bottom-0 mt-5 flex justify-end gap-3 rounded-2xl bg-slate-950/95 py-3 backdrop-blur-sm">
           <Button type="button" onClick={() => setModalOpen(false)} className="bg-white/10 text-white hover:bg-white/15">Hủy</Button>
           <Button type="button" onClick={savePayment} className="gap-2"><Save size={16} /> {editingPayment ? 'Cập nhật' : 'Tạo mới'}</Button>
         </div>
