@@ -36,7 +36,7 @@ export interface Match {
 }
 
 export interface PaymentParticipant {
-  player: Player;
+  player: Player | null;
   hasPaid: boolean;
   amount: number;
   paidAt?: string | null;

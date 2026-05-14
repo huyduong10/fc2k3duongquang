@@ -38,6 +38,8 @@ export const ContributionsPage = () => {
     [payments],
   );
 
+  const getParticipantName = (fullName?: string | null) => fullName?.trim() || 'Cau thu da roi doi';
+
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 lg:px-8">
       <div>
@@ -116,9 +118,12 @@ export const ContributionsPage = () => {
                       <p className="text-sm text-emerald-100/80">Chưa có ai đóng.</p>
                     ) : (
                       <div className="space-y-2">
-                        {paidPlayers.map((participant) => (
-                          <div key={participant.player._id} className="flex items-center justify-between rounded-2xl border border-emerald-300/20 bg-emerald-900/20 px-3 py-2 text-sm text-emerald-100">
-                            <span>{participant.player.fullName}</span>
+                        {paidPlayers.map((participant, index) => (
+                          <div
+                            key={`${payment._id}-paid-${participant.player?._id || 'unknown'}-${index}`}
+                            className="flex items-center justify-between rounded-2xl border border-emerald-300/20 bg-emerald-900/20 px-3 py-2 text-sm text-emerald-100"
+                          >
+                            <span>{getParticipantName(participant.player?.fullName)}</span>
                             <span>{formatCurrency(participant.amount, payment.currency)}</span>
                           </div>
                         ))}
@@ -135,9 +140,12 @@ export const ContributionsPage = () => {
                       <p className="text-sm text-rose-100/80">Tất cả đã đóng đủ.</p>
                     ) : (
                       <div className="space-y-2">
-                        {unpaidPlayers.map((participant) => (
-                          <div key={participant.player._id} className="flex items-center justify-between rounded-2xl border border-rose-300/20 bg-rose-900/20 px-3 py-2 text-sm text-rose-100">
-                            <span>{participant.player.fullName}</span>
+                        {unpaidPlayers.map((participant, index) => (
+                          <div
+                            key={`${payment._id}-unpaid-${participant.player?._id || 'unknown'}-${index}`}
+                            className="flex items-center justify-between rounded-2xl border border-rose-300/20 bg-rose-900/20 px-3 py-2 text-sm text-rose-100"
+                          >
+                            <span>{getParticipantName(participant.player?.fullName)}</span>
                             <span>{formatCurrency(participant.amount, payment.currency)}</span>
                           </div>
                         ))}
