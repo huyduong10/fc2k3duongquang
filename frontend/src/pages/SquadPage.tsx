@@ -64,18 +64,14 @@ export const SquadPage = () => {
                   <Badge tone="info">{player.position}</Badge>
                 </div>
 
-                <div className="mt-6 grid grid-cols-3 gap-3">
+                <div className="mt-6 grid grid-cols-2 gap-3">
                   <div className="rounded-2xl border border-white/10 bg-white/5 p-3 text-center">
                     <p className="text-xs uppercase tracking-[0.2em] text-slate-400">Bàn thắng</p>
-                    <p className="mt-2 text-2xl font-semibold text-white">{player.goals}</p>
+                    <p className="mt-2 text-2xl font-semibold text-white">{player.goals ?? 0}</p>
                   </div>
                   <div className="rounded-2xl border border-white/10 bg-white/5 p-3 text-center">
                     <p className="text-xs uppercase tracking-[0.2em] text-slate-400">Kiến tạo</p>
-                    <p className="mt-2 text-2xl font-semibold text-white">{player.assists}</p>
-                  </div>
-                  <div className="rounded-2xl border border-white/10 bg-white/5 p-3 text-center">
-                    <p className="text-xs uppercase tracking-[0.2em] text-slate-400">Thẻ vàng</p>
-                    <p className="mt-2 text-2xl font-semibold text-white">{player.yellowCards}</p>
+                    <p className="mt-2 text-2xl font-semibold text-white">{player.assists ?? 0}</p>
                   </div>
                 </div>
               </article>
